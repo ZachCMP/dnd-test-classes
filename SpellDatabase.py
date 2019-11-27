@@ -20,11 +20,16 @@ class SpellDatabase:
     return out
 
   def getSchoolNames(self):
+    if self._schools:
+      return self._schools
+
     schools = []
     for name, info in self.spells.items():
       if info['school'] not in schools:
         schools.append(info['school'])
-    return schools
+    self._schools = schools
+
+    return self._schools
 
   def getSpellsBySchool(self, school, spells=None):
     if not school:
